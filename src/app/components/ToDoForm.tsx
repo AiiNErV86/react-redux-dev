@@ -15,27 +15,28 @@ const todoForm = () => {
 
     const [modalStaus, setModalStatus] = useState<boolean>(false);
 
-    const handleSubmit =  async (e: React.ChangeEvent<any>) => {
+    const handleSubmit = async (e: React.ChangeEvent<any>) => {
         e.preventDefault();
 
         setModalStatus(true);
-    
+
         await addTodo({
             id: uuidv4(),
             name: value.toString(),
             completed: false
         });
-       
+
         route.refresh();
     }
-  return (
-            <form className='ToDoForm'>
-            <input type="text" className="todo-input" placeholder='Task...'onChange={(e) =>{setInput(e.target.value)}}/>
-            <button type='submit' className="btn"><FiPlus size={14} onClick={handleSubmit}/></button>
+    
+    return (
+        <form className='ToDoForm'>
+            <input type="text" className="todo-input" placeholder='Task...' onChange={(e) => { setInput(e.target.value) }} />
+            <button type='submit' className="btn"><FiPlus size={14} onClick={handleSubmit} /></button>
 
             <Modals modalOpen={modalStaus} setModalStatus={setModalStatus}>Task added</Modals>
         </form>
-  )
+    )
 }
 
 export default todoForm
